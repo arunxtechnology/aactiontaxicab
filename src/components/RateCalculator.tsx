@@ -114,9 +114,14 @@ const RateCalculator = ({ pickupAddress = '', destAddress = '', isAirportTrip = 
             </div>
 
             {!pickupAddress || !destAddress ? (
-                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 flex items-start space-x-3">
-                    <MapPin className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
-                    <p className="text-blue-800 text-sm">
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
+                    <h3 className="text-blue-900 font-semibold mb-2">Our Rates</h3>
+                    <ul className="text-blue-800 text-sm space-y-1 list-disc list-inside">
+                        <li><strong>$3.00</strong> per mile</li>
+                        <li><strong>$25.00</strong> minimum fare</li>
+                        <li><strong>+$5.00</strong> for airport pickups/dropoffs</li>
+                    </ul>
+                    <p className="text-blue-600 text-xs mt-3">
                         Fill in the pickup and destination addresses below to see your estimated fare.
                     </p>
                 </div>
