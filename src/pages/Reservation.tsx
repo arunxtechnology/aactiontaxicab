@@ -1,17 +1,13 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Phone, CalendarCheck, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
-import emailjs from '@emailjs/browser';
-
-// EmailJS Configuration - You'll need to set these up at https://www.emailjs.com/
-// Free tier: 200 emails/month, works on any hosting platform
-const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'YOUR_SERVICE_ID';
-const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'YOUR_TEMPLATE_ID';
-const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'YOUR_PUBLIC_KEY';
+import RateCalculator from '../components/RateCalculator';
 
 const Reservation = () => {
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [calculatedDistance, setCalculatedDistance] = useState<number | null>(null);
+  const [calculatedFare, setCalculatedFare] = useState<number | null>(null);
   const [formData, setFormData] = useState({
     name: '',
     confirmationMethod: '',
@@ -32,6 +28,7 @@ const Reservation = () => {
     pickupPeriod: 'AM',
     passengers: '1',
     comments: '',
+    isAirportTrip: false,
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
@@ -48,32 +45,42 @@ const Reservation = () => {
     setIsSubmitting(true);
     setSubmitError(null);
 
-    // Format the data for the email template
+    // Format the data for the email
     const pickupTime = `${formData.pickupHour}:${formData.pickupMinute} ${formData.pickupPeriod}`;
     const pickupAddress = `${formData.pickupStreet}${formData.pickupStreet2 ? ', ' + formData.pickupStreet2 : ''}, ${formData.pickupCity}, ${formData.pickupState} ${formData.pickupZip}`;
     const destAddress = `${formData.destStreet}, ${formData.destCity}, ${formData.destState} ${formData.destZip}`;
 
-    const templateParams = {
-      customer_name: formData.name,
-      customer_phone: formData.phone,
-      customer_email: formData.email || 'Not provided',
-      confirmation_method: formData.confirmationMethod,
-      pickup_address: pickupAddress,
-      destination_address: destAddress,
-      pickup_date: formData.pickupDate,
-      pickup_time: pickupTime,
+    const reservationData = {
+      customerName: formData.name,
+      customerPhone: formData.phone,
+      customerEmail: formData.email || 'Not provided',
+      confirmationMethod: formData.confirmationMethod,
+      pickupAddress,
+      destinationAddress: destAddress,
+      pickupDate: formData.pickupDate,
+      pickupTime,
       passengers: formData.passengers,
+      isAirportTrip: formData.isAirportTrip ? 'Yes (+$5 airport fee)' : 'No',
+      calculatedDistance: calculatedDistance ? `${calculatedDistance.toFixed(1)} miles` : 'Not calculated',
+      estimatedFare: calculatedFare ? `$${calculatedFare.toFixed(2)}` : 'Not calculated',
       comments: formData.comments || 'None',
-      to_email: 'kbkb1124@gmail.com', // Owner's email
+      ownerEmail: 'some99388@gmail.com'
     };
 
     try {
-      await emailjs.send(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_TEMPLATE_ID,
-        templateParams,
-        EMAILJS_PUBLIC_KEY
-      );
+      const response = await fetch('/api/send-reservation', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(reservationData),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Failed to send reservation');
+      }
 
       setSubmitted(true);
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -146,6 +153,18 @@ const Reservation = () => {
 
       <section className="py-16 bg-soft-gray">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mb-12">
+            <RateCalculator
+              pickupAddress={`${formData.pickupStreet}${formData.pickupStreet2 ? ', ' + formData.pickupStreet2 : ''}, ${formData.pickupCity}, ${formData.pickupState} ${formData.pickupZip}`.trim()}
+              destAddress={`${formData.destStreet}, ${formData.destCity}, ${formData.destState} ${formData.destZip}`.trim()}
+              isAirportTrip={formData.isAirportTrip}
+              onCalculate={(distance, fare) => {
+                setCalculatedDistance(distance);
+                setCalculatedFare(fare);
+              }}
+            />
+          </div>
+
           <div className="bg-white rounded-2xl shadow-xl p-8 sm:p-12">
             <form onSubmit={handleSubmit} className="space-y-8">
               <div>
@@ -236,6 +255,24 @@ const Reservation = () => {
                     placeholder="(919) 123-4567"
                   />
                 </div>
+              </div>
+
+              <div className="bg-yellow-50 border border-taxi-yellow/30 rounded-lg p-4">
+                <label className="flex items-start space-x-3 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    name="isAirportTrip"
+                    checked={formData.isAirportTrip}
+                    onChange={(e) => setFormData({ ...formData, isAirportTrip: e.target.checked })}
+                    className="w-5 h-5 text-taxi-yellow focus:ring-taxi-yellow mt-0.5 rounded"
+                  />
+                  <div>
+                    <span className="font-semibold text-dark-slate">This is an airport trip</span>
+                    <p className="text-sm text-gray-600 mt-1">
+                      Check this if your trip starts or ends at RDU Airport. An additional $5 airport fee will be added to your fare.
+                    </p>
+                  </div>
+                </label>
               </div>
 
               <div className="border-t-2 border-taxi-yellow pt-8">
@@ -503,8 +540,8 @@ const Reservation = () => {
                   type="submit"
                   disabled={isSubmitting}
                   className={`w-full flex items-center justify-center space-x-2 font-semibold text-lg px-8 py-4 rounded-lg transition-all shadow-lg ${isSubmitting
-                      ? 'bg-gray-400 cursor-not-allowed'
-                      : 'bg-taxi-yellow hover:bg-yellow-500 text-deep-navy hover:scale-[1.02]'
+                    ? 'bg-gray-400 cursor-not-allowed'
+                    : 'bg-taxi-yellow hover:bg-yellow-500 text-deep-navy hover:scale-[1.02]'
                     }`}
                 >
                   {isSubmitting ? (
