@@ -1,6 +1,13 @@
 import { useState, useRef, useEffect } from 'react';
 import { Phone, CalendarCheck, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 import RateCalculator from '../components/RateCalculator';
+
+// EmailJS Configuration - You'll need to set these up at https://www.emailjs.com/
+// Free tier: 200 emails/month, works on any hosting platform
+const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'YOUR_SERVICE_ID';
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'YOUR_TEMPLATE_ID';
+const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'YOUR_PUBLIC_KEY';
 
 const Reservation = () => {
   const [submitted, setSubmitted] = useState(false);
@@ -45,42 +52,36 @@ const Reservation = () => {
     setIsSubmitting(true);
     setSubmitError(null);
 
-    // Format the data for the email
+    // Format the data for the email template
     const pickupTime = `${formData.pickupHour}:${formData.pickupMinute} ${formData.pickupPeriod}`;
     const pickupAddress = `${formData.pickupStreet}${formData.pickupStreet2 ? ', ' + formData.pickupStreet2 : ''}, ${formData.pickupCity}, ${formData.pickupState} ${formData.pickupZip}`;
     const destAddress = `${formData.destStreet}, ${formData.destCity}, ${formData.destState} ${formData.destZip}`;
 
-    const reservationData = {
-      customerName: formData.name,
-      customerPhone: formData.phone,
-      customerEmail: formData.email || 'Not provided',
-      confirmationMethod: formData.confirmationMethod,
-      pickupAddress,
-      destinationAddress: destAddress,
-      pickupDate: formData.pickupDate,
-      pickupTime,
+    const templateParams = {
+      customer_name: formData.name,
+      customer_phone: formData.phone,
+      customer_email: formData.email || 'Not provided',
+      confirmation_method: formData.confirmationMethod,
+      pickup_address: pickupAddress,
+      destination_address: destAddress,
+      pickup_date: formData.pickupDate,
+      pickup_time: pickupTime,
       passengers: formData.passengers,
-      isAirportTrip: formData.isAirportTrip ? 'Yes (+$5 airport fee)' : 'No',
-      calculatedDistance: calculatedDistance ? `${calculatedDistance.toFixed(1)} miles` : 'Not calculated',
-      estimatedFare: calculatedFare ? `$${calculatedFare.toFixed(2)}` : 'Not calculated',
+      is_airport_trip: formData.isAirportTrip ? 'Yes (+$5 airport fee)' : 'No',
+      // Include calculated values
+      calculated_distance: calculatedDistance ? `${calculatedDistance.toFixed(1)} miles` : 'Not calculated',
+      estimated_fare: calculatedFare ? `$${calculatedFare.toFixed(2)}` : 'Not calculated',
       comments: formData.comments || 'None',
-      ownerEmail: 'some99388@gmail.com'
+      to_email: 'some99388@gmail.com', // Owner's email
     };
 
     try {
-      const response = await fetch('/api/send-reservation', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(reservationData),
-      });
-
-      const result = await response.json();
-
-      if (!response.ok) {
-        throw new Error(result.error || 'Failed to send reservation');
-      }
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        templateParams,
+        EMAILJS_PUBLIC_KEY
+      );
 
       setSubmitted(true);
       window.scrollTo({ top: 0, behavior: 'smooth' });
