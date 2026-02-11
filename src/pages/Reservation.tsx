@@ -72,7 +72,7 @@ const Reservation = () => {
       calculated_distance: calculatedDistance ? `${calculatedDistance.toFixed(1)} miles` : 'Not calculated',
       estimated_fare: calculatedFare ? `$${calculatedFare.toFixed(2)}` : 'Not calculated',
       comments: formData.comments || 'None',
-      to_email: 'caryaactiontaxicab@gmail.com', // Owner's email
+      to_email: 'some99388@gmail.com', // Owner's email
     };
 
     try {
