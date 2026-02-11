@@ -186,7 +186,7 @@ const Home = () => {
                 className="inline-flex items-center space-x-2 bg-deep-navy hover:bg-blue-900 text-white font-medium px-8 py-4 rounded-lg transition-all"
               >
                 <Phone className="w-5 h-5" />
-                <span>Get a Quote</span>
+                <span>Call Now</span>
               </a>
             </div>
             <div className="w-full lg:w-1/2">
