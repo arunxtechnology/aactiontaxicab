@@ -73,7 +73,7 @@ const Footer = () => {
               <li className="flex items-start space-x-3">
                 <MapPin className="w-5 h-5 text-taxi-yellow flex-shrink-0 mt-0.5" />
                 <span className="text-gray-300 font-inter">
-                  Serving Raleigh, Durham, Chapel Hill, Cary, Apex, RDU & RTP
+                  Serving Raleigh, Durham, Chapel Hill, Cary, Apex, Holly Springs, Pittsboro, RDU & RTP
                 </span>
               </li>
             </ul>

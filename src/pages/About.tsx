@@ -76,7 +76,7 @@ const About = () => {
               </h2>
               <div className="space-y-4 text-gray-600 text-lg leading-relaxed">
                 <p>
-                  AAction Taxi Cab has been proudly serving the Triangle area of North Carolina for over three decades. What started as a single taxi has grown into a comprehensive transportation service trusted by thousands of residents and businesses throughout Raleigh, Durham, Chapel Hill, Cary, Apex, and the surrounding communities.
+                  AAction Taxi Cab has been proudly serving the Triangle area of North Carolina for over three decades. What started as a single taxi has grown into a comprehensive transportation service trusted by thousands of residents and businesses throughout Raleigh, Durham, Chapel Hill, Cary, Apex, Holly Springs, Pittsboro, and the surrounding communities.
                 </p>
                 <p>
                   Our success is built on a foundation of reliability, professionalism, and an unwavering commitment to customer satisfaction. Whether you need a ride to RDU Airport, transportation for a special event, or regular corporate transportation services, we're here to serve you with the highest standards of excellence.
@@ -165,7 +165,7 @@ const About = () => {
                   <MapPin className="w-6 h-6 text-taxi-yellow flex-shrink-0 mt-1" />
                   <div>
                     <p className="font-semibold text-lg">Serving the Entire Triangle</p>
-                    <p className="text-gray-300">Raleigh, Durham, Chapel Hill, Cary, Apex, RDU & RTP</p>
+                    <p className="text-gray-300">Raleigh, Durham, Chapel Hill, Cary, Apex, Holly Springs, Pittsboro, RDU & RTP</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-3 mb-4">

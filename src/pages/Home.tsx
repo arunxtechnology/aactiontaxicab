@@ -41,6 +41,8 @@ const Home = () => {
     'Chapel Hill',
     'Cary',
     'Apex',
+    'Holly Springs',
+    'Pittsboro',
     'RDU Airport',
     'Research Triangle Park',
   ];
@@ -74,7 +76,7 @@ const Home = () => {
               </h1>
 
               <p className="text-xl text-gray-200 mb-4 drop-shadow-md">
-                Serving Raleigh, Durham, Chapel Hill, Cary, Apex, RDU & RTP
+                Serving Raleigh, Durham, Chapel Hill, Cary, Apex, Holly Springs, Pittsboro, RDU & RTP
               </p>
 
               <p className="text-lg text-gray-300 mb-8 max-w-xl mx-auto lg:mx-0 drop-shadow-md">
@@ -145,6 +147,55 @@ const Home = () => {
                   <Phone className="w-5 h-5" />
                   <span>Call to Redeem</span>
                 </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Long Distance Trips Section */}
+      <section className="py-16 bg-soft-gray border-y border-gray-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col lg:flex-row items-center gap-12">
+            <div className="w-full lg:w-1/2">
+              <div className="inline-block bg-sky-blue text-white font-bold px-4 py-1 rounded-full mb-4">
+                AVAILABLE NOW
+              </div>
+              <h2 className="font-poppins font-bold text-3xl sm:text-4xl text-deep-navy mb-6">
+                Long Distance Trips
+              </h2>
+              <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+                Need to go further? We provide reliable long-distance transportation to destinations across North Carolina and beyond. Whether it's a trip to the beach, mountains, or another city, ride in comfort with AAction Taxi Cab.
+              </p>
+              <ul className="space-y-3 mb-8">
+                <li className="flex items-center space-x-3">
+                  <MapPin className="w-5 h-5 text-taxi-yellow" />
+                  <span className="text-gray-700 text-lg">Travel to Charlotte, Greensboro, Wilmington, and more</span>
+                </li>
+                <li className="flex items-center space-x-3">
+                  <Car className="w-5 h-5 text-taxi-yellow" />
+                  <span className="text-gray-700 text-lg">Comfortable vehicles for long journeys</span>
+                </li>
+                <li className="flex items-center space-x-3">
+                  <Shield className="w-5 h-5 text-taxi-yellow" />
+                  <span className="text-gray-700 text-lg">Competitive flat rates available</span>
+                </li>
+              </ul>
+              <a
+                href="tel:9199246908"
+                className="inline-flex items-center space-x-2 bg-deep-navy hover:bg-blue-900 text-white font-medium px-8 py-4 rounded-lg transition-all"
+              >
+                <Phone className="w-5 h-5" />
+                <span>Get a Quote</span>
+              </a>
+            </div>
+            <div className="w-full lg:w-1/2">
+              <div className="bg-white p-2 rounded-2xl shadow-xl">
+                <img
+                  src="/images/hero-sedan.png" // Reusing hero image or placeholder if needed
+                  alt="Long Distance Travel"
+                  className="w-full h-auto rounded-xl object-cover"
+                />
               </div>
             </div>
           </div>
