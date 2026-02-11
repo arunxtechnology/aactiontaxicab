@@ -117,7 +117,7 @@ const RateCalculator = ({ pickupAddress = '', destAddress = '', isAirportTrip = 
                 <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
                     <h3 className="text-blue-900 font-semibold mb-2">Our Rates</h3>
                     <ul className="text-blue-800 text-sm space-y-1 list-disc list-inside">
-                        <li><strong>$3.00</strong> per mile</li>
+
                         <li><strong>$25.00</strong> minimum fare</li>
                         <li><strong>+$5.00</strong> for airport pickups/dropoffs</li>
                     </ul>
@@ -137,19 +137,14 @@ const RateCalculator = ({ pickupAddress = '', destAddress = '', isAirportTrip = 
                 </div>
             ) : distance !== null && rate !== null ? (
                 <div className="space-y-4">
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="flex justify-center">
                         <div className="bg-soft-gray rounded-lg p-4 text-center">
                             <p className="text-gray-600 text-sm mb-1">Distance</p>
                             <p className="font-poppins font-bold text-2xl text-deep-navy">
                                 {distance.toFixed(1)} mi
                             </p>
                         </div>
-                        <div className="bg-soft-gray rounded-lg p-4 text-center">
-                            <p className="text-gray-600 text-sm mb-1">Rate/Mile</p>
-                            <p className="font-poppins font-bold text-2xl text-deep-navy">
-                                $3.00
-                            </p>
-                        </div>
+
                     </div>
 
                     {isAirportTrip && (
