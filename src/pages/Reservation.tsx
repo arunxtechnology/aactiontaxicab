@@ -1,7 +1,8 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState } from 'react';
 import { Phone, CalendarCheck, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 import RateCalculator from '../components/RateCalculator';
+import SEO from '../components/SEO';
 
 // EmailJS Configuration - You'll need to set these up at https://www.emailjs.com/
 // Free tier: 200 emails/month, works on any hosting platform
@@ -96,6 +97,11 @@ const Reservation = () => {
   if (submitted) {
     return (
       <div className="font-inter min-h-screen bg-soft-gray py-16">
+        <SEO
+          title="Reservation Submitted - AAction Taxi Cab"
+          description="Your requested reservation was successfully submitted."
+          url="https://aactiontaxicab.com/reservation"
+        />
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white rounded-2xl shadow-xl p-8 sm:p-12 text-center">
             <div className="inline-flex items-center justify-center w-20 h-20 bg-green-100 rounded-full mb-6">
@@ -162,6 +168,11 @@ const Reservation = () => {
 
   return (
     <div className="font-inter">
+      <SEO
+        title="Make a Reservation - AAction Taxi Cab"
+        description="Book your taxi or airport transportation online with AAction Taxi Cab. Fast, reliable service in the Triangle area."
+        url="https://aactiontaxicab.com/reservation"
+      />
       <section className="bg-gradient-to-br from-deep-navy via-blue-900 to-deep-navy text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto">
@@ -300,7 +311,7 @@ const Reservation = () => {
               </div>
 
               <div className="border-t-2 border-taxi-yellow pt-8">
-                <h3 className="font-poppins font-semibold text-2xl text-deep-navy mb-6">Pickup Address</h3>
+                <h2 className="font-poppins font-semibold text-2xl text-deep-navy mb-6">Pickup Address</h2>
 
                 <div className="space-y-6">
                   <div>
@@ -382,7 +393,7 @@ const Reservation = () => {
               </div>
 
               <div className="border-t-2 border-taxi-yellow pt-8">
-                <h3 className="font-poppins font-semibold text-2xl text-deep-navy mb-6">Destination Address</h3>
+                <h2 className="font-poppins font-semibold text-2xl text-deep-navy mb-6">Destination Address</h2>
 
                 <div className="space-y-6">
                   <div>
@@ -450,7 +461,7 @@ const Reservation = () => {
               </div>
 
               <div className="border-t-2 border-taxi-yellow pt-8">
-                <h3 className="font-poppins font-semibold text-2xl text-deep-navy mb-6">Pickup Details</h3>
+                <h2 className="font-poppins font-semibold text-2xl text-deep-navy mb-6">Pickup Details</h2>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                   <div>

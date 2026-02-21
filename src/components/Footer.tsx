@@ -20,7 +20,7 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 className="font-poppins font-semibold text-lg mb-4 text-taxi-yellow">Quick Links</h4>
+            <h2 className="font-poppins font-semibold text-lg mb-4 text-taxi-yellow">Quick Links</h2>
             <ul className="space-y-2">
               <li>
                 <Link to="/" className="text-gray-300 hover:text-taxi-yellow transition-colors font-inter">
@@ -56,7 +56,7 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 className="font-poppins font-semibold text-lg mb-4 text-taxi-yellow">Contact Info</h4>
+            <h2 className="font-poppins font-semibold text-lg mb-4 text-taxi-yellow">Contact Info</h2>
             <ul className="space-y-3">
               <li className="flex items-start space-x-3">
                 <Phone className="w-5 h-5 text-taxi-yellow flex-shrink-0 mt-0.5" />
@@ -80,7 +80,7 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 className="font-poppins font-semibold text-lg mb-4 text-taxi-yellow">Hours of Service</h4>
+            <h2 className="font-poppins font-semibold text-lg mb-4 text-taxi-yellow">Hours of Service</h2>
             <div className="flex items-start space-x-3">
               <Clock className="w-5 h-5 text-taxi-yellow flex-shrink-0 mt-0.5" />
               <div className="text-gray-300 font-inter">

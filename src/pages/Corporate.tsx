@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Briefcase, Phone, DollarSign, Clock, TrendingDown, Users, Package, Plane, FileText, CheckCircle } from 'lucide-react';
+import SEO from '../components/SEO';
 
 const Corporate = () => {
   const benefits = [
@@ -61,6 +62,11 @@ const Corporate = () => {
 
   return (
     <div className="font-inter">
+      <SEO
+        title="Corporate Accounts - AAction Taxi Cab"
+        description="Set up a corporate transportation account with AAction Taxi Cab for priority service, discounted rates, and simplified billing."
+        url="https://aactiontaxicab.com/corporate"
+      />
       <section className="bg-gradient-to-br from-deep-navy via-blue-900 to-deep-navy text-white py-16 lg:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">

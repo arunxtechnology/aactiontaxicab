@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Phone, MessageSquare, CalendarCheck, MapPin, Clock, Shield, Car, Plane, Users, Package } from 'lucide-react';
+import SEO from '../components/SEO';
 
 const Home = () => {
   const features = [
@@ -49,6 +50,11 @@ const Home = () => {
 
   return (
     <div className="font-inter">
+      <SEO
+        title="AAction Taxi Cab - Home"
+        description="AAction Taxi Cab provides professional airport transportation and taxi services in Raleigh, Durham, Chapel Hill, Cary, Apex, and RDU airport."
+        url="https://aactiontaxicab.com/"
+      />
       <section
         className="relative bg-deep-navy text-white py-20 lg:py-32 overflow-hidden bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: 'url("/images/hero-sedan.png")' }}

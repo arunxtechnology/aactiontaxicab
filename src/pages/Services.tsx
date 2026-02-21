@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Plane, Car, Briefcase, MapPin, ShoppingBag, Package, Truck, Users, Phone, CalendarCheck } from 'lucide-react';
+import SEO from '../components/SEO';
 
 const Services = () => {
   const services = [
@@ -106,6 +107,11 @@ const Services = () => {
 
   return (
     <div className="font-inter">
+      <SEO
+        title="Our Services - AAction Taxi Cab"
+        description="Explore our transportation services including airport taxi, door-to-door, corporate accounts, and package delivery in the NC Triangle."
+        url="https://aactiontaxicab.com/services"
+      />
       <section className="bg-gradient-to-br from-deep-navy via-blue-900 to-deep-navy text-white py-16 lg:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">

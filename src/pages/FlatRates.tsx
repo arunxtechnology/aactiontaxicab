@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Phone, CalendarCheck, AlertCircle, MapPin, DollarSign } from 'lucide-react';
+import SEO from '../components/SEO';
 
 const FlatRates = () => {
   const rates = [
@@ -138,6 +139,11 @@ const FlatRates = () => {
 
   return (
     <div className="font-inter">
+      <SEO
+        title="RDU Airport Flat Rates - AAction Taxi Cab"
+        description="Check our competitive flat rates for taxi service to RDU airport from Raleigh, Durham, Chapel Hill, Cary, and other NC cities."
+        url="https://aactiontaxicab.com/flat-rates"
+      />
       <section className="bg-gradient-to-br from-deep-navy via-blue-900 to-deep-navy text-white py-16 lg:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
