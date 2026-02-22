@@ -56,7 +56,7 @@ const Home = () => {
         url="https://aactiontaxicab.com/"
       />
       <section
-        className="relative bg-deep-navy text-white py-20 lg:py-32 overflow-hidden bg-cover bg-center bg-no-repeat"
+        className="relative bg-deep-navy text-white py-10 sm:py-14 lg:py-20 overflow-hidden bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: 'url("/images/hero-sedan.png")' }}
       >
         {/* Dark Gradient Overlay for text readability */}
@@ -72,50 +72,50 @@ const Home = () => {
           <div className="max-w-3xl">
             {/* Text Content */}
             <div className="text-center lg:text-left">
-              <div className="inline-flex items-center space-x-2 bg-taxi-yellow/10 border border-taxi-yellow/30 rounded-full px-4 py-2 mb-6 backdrop-blur-sm">
+              <div className="inline-flex items-center space-x-2 bg-taxi-yellow/10 border border-taxi-yellow/30 rounded-full px-3 py-1.5 sm:px-4 sm:py-2 mb-3 sm:mb-6 backdrop-blur-sm">
                 <Plane className="w-4 h-4 text-taxi-yellow" />
-                <span className="text-taxi-yellow font-medium text-sm">Serving the Triangle Since 1990</span>
+                <span className="text-taxi-yellow font-medium text-xs sm:text-sm">Serving the Triangle Since 1990</span>
               </div>
 
-              <h1 className="font-poppins font-bold text-4xl sm:text-5xl lg:text-6xl mb-6 leading-tight text-white drop-shadow-lg">
+              <h1 className="font-poppins font-bold text-2xl sm:text-5xl lg:text-6xl mb-3 sm:mb-6 leading-tight text-white drop-shadow-lg">
                 Reliable Taxi & Airport Transportation <span className="text-taxi-yellow">Across the Triangle</span>
               </h1>
 
-              <p className="text-xl text-gray-200 mb-4 drop-shadow-md">
+              <p className="text-sm sm:text-xl text-gray-200 mb-2 sm:mb-4 drop-shadow-md">
                 Serving Raleigh, Durham, Chapel Hill, Cary, Apex, Holly Springs, Pittsboro, RDU & RTP
               </p>
 
-              <p className="text-lg text-gray-300 mb-8 max-w-xl mx-auto lg:mx-0 drop-shadow-md">
+              <p className="text-xs sm:text-lg text-gray-300 mb-4 sm:mb-8 max-w-xl mx-auto lg:mx-0 drop-shadow-md">
                 Professional, on-time transportation service with competitive flat rates and corporate account options.
               </p>
 
-              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 mb-6">
+              <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-2 sm:gap-4 mb-4 sm:mb-6">
                 <a
                   href="tel:9199246908"
-                  className="w-full sm:w-auto flex items-center justify-center space-x-2 bg-taxi-yellow hover:bg-yellow-500 text-deep-navy font-medium px-8 py-4 rounded-lg transition-all hover:scale-105 shadow-xl"
+                  className="w-full sm:w-auto flex items-center justify-center space-x-2 bg-taxi-yellow hover:bg-yellow-500 text-deep-navy font-medium px-6 py-2.5 sm:px-8 sm:py-4 rounded-lg transition-all hover:scale-105 shadow-xl"
                 >
-                  <Phone className="w-5 h-5" />
-                  <span className="text-lg">Call Now</span>
+                  <Phone className="w-4 h-4 sm:w-5 sm:h-5" />
+                  <span className="text-base sm:text-lg">Call Now</span>
                 </a>
                 <a
                   href="sms:9199246908"
-                  className="w-full sm:w-auto flex items-center justify-center space-x-2 bg-sky-blue hover:bg-blue-500 text-white font-medium px-8 py-4 rounded-lg transition-all hover:scale-105 shadow-xl"
+                  className="w-full sm:w-auto flex items-center justify-center space-x-2 bg-sky-blue hover:bg-blue-500 text-white font-medium px-6 py-2.5 sm:px-8 sm:py-4 rounded-lg transition-all hover:scale-105 shadow-xl"
                 >
-                  <MessageSquare className="w-5 h-5" />
-                  <span className="text-lg">Text Us</span>
+                  <MessageSquare className="w-4 h-4 sm:w-5 sm:h-5" />
+                  <span className="text-base sm:text-lg">Text Us</span>
                 </a>
                 <Link
                   to="/reservation"
-                  className="w-full sm:w-auto flex items-center justify-center space-x-2 bg-white hover:bg-gray-100 text-deep-navy font-medium px-8 py-4 rounded-lg transition-all hover:scale-105 shadow-xl"
+                  className="w-full sm:w-auto flex items-center justify-center space-x-2 bg-white hover:bg-gray-100 text-deep-navy font-medium px-6 py-2.5 sm:px-8 sm:py-4 rounded-lg transition-all hover:scale-105 shadow-xl"
                 >
-                  <CalendarCheck className="w-5 h-5" />
-                  <span className="text-lg">Reserve</span>
+                  <CalendarCheck className="w-4 h-4 sm:w-5 sm:h-5" />
+                  <span className="text-base sm:text-lg">Reserve</span>
                 </Link>
               </div>
 
               <div className="flex items-center justify-center lg:justify-start space-x-2 text-taxi-yellow drop-shadow-md">
-                <Clock className="w-5 h-5" />
-                <span className="text-lg font-medium">Available 24/7</span>
+                <Clock className="w-4 h-4 sm:w-5 sm:h-5" />
+                <span className="text-sm sm:text-lg font-medium">Available 24/7</span>
               </div>
             </div>
           </div>
