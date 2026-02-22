@@ -99,9 +99,12 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-gray-700 mt-8 pt-8 text-center">
+        <div className="border-t border-gray-700 mt-8 pt-8 text-center space-y-2">
           <p className="text-gray-400 font-inter text-sm">
             &copy; {new Date().getFullYear()} AAction Taxi Cab. All rights reserved. Professional taxi and airport transportation services in the Triangle area of North Carolina.
+          </p>
+          <p className="text-gray-400 font-inter text-sm">
+            Website made by <a href="https://www.elevatedigitalsol.com/" target="_blank" rel="noopener noreferrer" className="text-taxi-yellow hover:text-yellow-400 transition-colors">Elevate Digital Solutions</a>
           </p>
         </div>
       </div>
