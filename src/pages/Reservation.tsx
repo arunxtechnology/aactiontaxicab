@@ -48,6 +48,12 @@ const Reservation = () => {
     if (submitError) setSubmitError(null);
   };
 
+  const formatDateToMDY = (dateStr: string) => {
+    if (!dateStr) return '';
+    const [year, month, day] = dateStr.split('-');
+    return `${month}/${day}/${year}`;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -65,9 +71,9 @@ const Reservation = () => {
       confirmation_method: formData.confirmationMethod,
       pickup_address: pickupAddress,
       destination_address: destAddress,
-      pickup_date: formData.pickupDate,
+      pickup_date: formatDateToMDY(formData.pickupDate),
       pickup_time: pickupTime,
-      passengers: formData.passengers,
+      passengers: `${formData.passengers} ${parseInt(formData.passengers, 10) > 2 ? '(+$5 extra fee)' : ''}`,
       is_airport_trip: formData.isAirportTrip ? 'Yes (+$5 airport fee)' : 'No',
       // Include calculated values
       calculated_distance: calculatedDistance ? `${calculatedDistance.toFixed(1)} miles` : 'Not calculated',
@@ -132,6 +138,11 @@ const Reservation = () => {
                       (Includes $5.00 Airport Fee)
                     </p>
                   )}
+                  {parseInt(formData.passengers, 10) > 2 && (
+                    <p className="text-blue-600 text-xs mt-1 text-center">
+                      (Includes $5.00 Extra Passengers Fee)
+                    </p>
+                  )}
                 </div>
               )}
 
@@ -140,7 +151,7 @@ const Reservation = () => {
                   <strong className="inline-block w-24">Name:</strong> {formData.name}
                 </p>
                 <p className="text-gray-700">
-                  <strong className="inline-block w-24">Date:</strong> {formData.pickupDate}
+                  <strong className="inline-block w-24">Date:</strong> {formatDateToMDY(formData.pickupDate)}
                 </p>
                 <p className="text-gray-700 mb-2">
                   <strong>Pickup Time:</strong> {formData.pickupHour}:{formData.pickupMinute} {formData.pickupPeriod}
@@ -193,6 +204,7 @@ const Reservation = () => {
               pickupAddress={`${formData.pickupStreet}${formData.pickupStreet2 ? ', ' + formData.pickupStreet2 : ''}, ${formData.pickupCity}, ${formData.pickupState} ${formData.pickupZip}`.trim()}
               destAddress={`${formData.destStreet}, ${formData.destCity}, ${formData.destState} ${formData.destZip}`.trim()}
               isAirportTrip={formData.isAirportTrip}
+              passengers={parseInt(formData.passengers, 10)}
               onCalculate={(distance, fare) => {
                 setCalculatedDistance(distance);
                 setCalculatedFare(fare);

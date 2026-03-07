@@ -1,14 +1,15 @@
 import { useState, useEffect } from 'react';
-import { Calculator, MapPin, Plane, Loader2, AlertCircle } from 'lucide-react';
+import { Calculator, MapPin, Plane, Loader2, AlertCircle, Users } from 'lucide-react';
 
 interface RateCalculatorProps {
     pickupAddress?: string;
     destAddress?: string;
     isAirportTrip?: boolean;
+    passengers?: number;
     onCalculate?: (distance: number | null, fare: number | null) => void;
 }
 
-const RateCalculator = ({ pickupAddress = '', destAddress = '', isAirportTrip = false, onCalculate }: RateCalculatorProps) => {
+const RateCalculator = ({ pickupAddress = '', destAddress = '', isAirportTrip = false, passengers = 1, onCalculate }: RateCalculatorProps) => {
     const [distance, setDistance] = useState<number | null>(null);
     const [rate, setRate] = useState<number | null>(null);
     const [loading, setLoading] = useState(false);
@@ -22,7 +23,7 @@ const RateCalculator = ({ pickupAddress = '', destAddress = '', isAirportTrip = 
             setRate(null);
             setError(null);
         }
-    }, [pickupAddress, destAddress, isAirportTrip]);
+    }, [pickupAddress, destAddress, isAirportTrip, passengers]);
 
     const calculateDistance = async () => {
         setLoading(true);
@@ -96,6 +97,11 @@ const RateCalculator = ({ pickupAddress = '', destAddress = '', isAirportTrip = 
             calculatedRate += 5;
         }
 
+        // Extra passengers fee logic
+        if (passengers > 2) {
+            calculatedRate += 5;
+        }
+
         setRate(calculatedRate);
 
         // Notify parent component
@@ -152,6 +158,15 @@ const RateCalculator = ({ pickupAddress = '', destAddress = '', isAirportTrip = 
                             <Plane className="w-5 h-5 text-taxi-yellow" />
                             <span className="text-sm text-gray-700">
                                 <strong>Airport Fee:</strong> +$5.00
+                            </span>
+                        </div>
+                    )}
+
+                    {passengers > 2 && (
+                        <div className="flex items-center space-x-2 p-3 bg-yellow-50 border border-taxi-yellow/30 rounded-lg">
+                            <Users className="w-5 h-5 text-taxi-yellow" />
+                            <span className="text-sm text-gray-700">
+                                <strong>Extra Passengers Fee:</strong> +$5.00
                             </span>
                         </div>
                     )}
