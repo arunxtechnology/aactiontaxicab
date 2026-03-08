@@ -120,31 +120,6 @@ const Reservation = () => {
               Thank you for choosing AAction Taxi Cab. We have received your reservation request and will contact you shortly via your preferred method to confirm the details.
             </p>
             <div className="bg-soft-gray rounded-lg p-6 mb-6">
-              {calculatedFare && (
-                <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
-                  <h3 className="text-blue-900 font-semibold mb-2">Estimated Fare</h3>
-                  <div className="grid grid-cols-2 gap-4 text-center">
-                    <div>
-                      <p className="text-gray-600 text-xs">Distance</p>
-                      <p className="text-blue-800 font-bold">{calculatedDistance?.toFixed(1)} miles</p>
-                    </div>
-                    <div>
-                      <p className="text-gray-600 text-xs">Total</p>
-                      <p className="text-blue-800 font-bold text-xl">${calculatedFare.toFixed(2)}</p>
-                    </div>
-                  </div>
-                  {formData.isAirportTrip && (
-                    <p className="text-blue-600 text-xs mt-2 text-center">
-                      (Includes $5.00 Airport Fee)
-                    </p>
-                  )}
-                  {parseInt(formData.passengers, 10) > 2 && (
-                    <p className="text-blue-600 text-xs mt-1 text-center">
-                      (Includes $5.00 Extra Passengers Fee)
-                    </p>
-                  )}
-                </div>
-              )}
 
               <div className="space-y-2 text-left">
                 <p className="text-gray-700">

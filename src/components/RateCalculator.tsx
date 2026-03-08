@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Calculator, MapPin, Plane, Loader2, AlertCircle, Users } from 'lucide-react';
+import { Calculator, Loader2, AlertCircle } from 'lucide-react';
 
 interface RateCalculatorProps {
     pickupAddress?: string;
@@ -138,19 +138,13 @@ const RateCalculator = ({ pickupAddress = '', destAddress = '', isAirportTrip = 
                 <div className="p-3 bg-taxi-yellow/10 rounded-full">
                     <Calculator className="w-6 h-6 text-taxi-yellow" />
                 </div>
-                <h2 className="font-poppins font-bold text-2xl text-deep-navy">Fare Estimate</h2>
+                <h2 className="font-poppins font-bold text-2xl text-deep-navy">Distance Calculator</h2>
             </div>
 
             {!pickupAddress || !destAddress ? (
                 <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-4">
-                    <h3 className="text-blue-900 font-semibold mb-2">Our Rates</h3>
-                    <ul className="text-blue-800 text-sm space-y-1 list-disc list-inside">
-
-                        <li><strong>$25.00</strong> minimum fare</li>
-                        <li><strong>+$5.00</strong> for airport pickups/dropoffs</li>
-                    </ul>
-                    <p className="text-blue-600 text-xs mt-3">
-                        Fill in the pickup and destination addresses below to see your estimated fare.
+                    <p className="text-blue-800 text-sm">
+                        Fill in the pickup and destination addresses below to calculate the distance for your trip.
                     </p>
                 </div>
             ) : loading ? (
@@ -167,43 +161,15 @@ const RateCalculator = ({ pickupAddress = '', destAddress = '', isAirportTrip = 
                 <div className="space-y-4">
                     <div className="flex justify-center">
                         <div className="bg-soft-gray rounded-lg p-4 text-center">
-                            <p className="text-gray-600 text-sm mb-1">Distance</p>
+                            <p className="text-gray-600 text-sm mb-1">Estimated Distance</p>
                             <p className="font-poppins font-bold text-2xl text-deep-navy">
                                 {distance.toFixed(1)} mi
                             </p>
                         </div>
-
                     </div>
-
-                    {isAirportTrip && (
-                        <div className="flex items-center space-x-2 p-3 bg-yellow-50 border border-taxi-yellow/30 rounded-lg">
-                            <Plane className="w-5 h-5 text-taxi-yellow" />
-                            <span className="text-sm text-gray-700">
-                                <strong>Airport Fee:</strong> +$5.00
-                            </span>
-                        </div>
-                    )}
-
-                    {passengers > 2 && (
-                        <div className="flex items-center space-x-2 p-3 bg-yellow-50 border border-taxi-yellow/30 rounded-lg">
-                            <Users className="w-5 h-5 text-taxi-yellow" />
-                            <span className="text-sm text-gray-700">
-                                <strong>Extra Passengers Fee:</strong> +$5.00
-                            </span>
-                        </div>
-                    )}
-
-                    <div className="mt-6 p-6 bg-deep-navy rounded-lg text-center text-white">
-                        <p className="text-gray-300 text-sm uppercase tracking-wider font-semibold mb-1">
-                            Estimated Fare
-                        </p>
-                        <div className="font-poppins font-bold text-4xl text-taxi-yellow">
-                            ${rate.toFixed(2)}
-                        </div>
-                        <p className="text-gray-400 text-xs mt-2">
-                            *Minimum fare is $25. Final fare may vary based on traffic and exact route.
-                        </p>
-                    </div>
+                    <p className="text-gray-500 text-xs text-center">
+                        *Final fare will be confirmed by our team when we process your reservation.
+                    </p>
                 </div>
             ) : null}
         </div>
