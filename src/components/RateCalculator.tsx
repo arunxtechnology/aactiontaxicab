@@ -66,6 +66,28 @@ const RateCalculator = ({ pickupAddress = '', destAddress = '', isAirportTrip = 
     };
 
     const geocodeAddress = async (address: string, apiKey: string) => {
+        // Primary: Use Nominatim (OpenStreetMap) for better street-level accuracy
+        // ORS geocoder often falls back to city centers for addresses it can't resolve exactly
+        try {
+            const nominatimResponse = await fetch(
+                `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}&countrycodes=us&limit=1`,
+                { headers: { 'User-Agent': 'AActionTaxiCabApp/1.0' } }
+            );
+
+            if (nominatimResponse.ok) {
+                const nominatimData = await nominatimResponse.json();
+                if (nominatimData && nominatimData.length > 0) {
+                    return {
+                        lon: parseFloat(nominatimData[0].lon),
+                        lat: parseFloat(nominatimData[0].lat)
+                    };
+                }
+            }
+        } catch (nominatimError) {
+            console.warn('Nominatim geocoding failed, falling back to ORS:', nominatimError);
+        }
+
+        // Fallback: Use ORS geocoder
         const response = await fetch(
             `https://api.openrouteservice.org/geocode/search?api_key=${apiKey}&text=${encodeURIComponent(address)}`
         );
